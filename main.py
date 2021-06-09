@@ -40,12 +40,18 @@ def detect_face(frame):
         rightEye = gray_frame[yRight:heightR , xRight:widthR]
         rightEyeColor = frame[yRight:heightR , xRight:widthR]
 
+
+        cv2.imshow('ROI  - Olho esquerdo', leftEyeColor)
+        cv2.imshow('ROI  - Olho direito', rightEyeColor)
+
         #Busca a posição do valor minimo (mais escuro) dentro do crop do olho 
         _, _, min_loc, _ = cv2.minMaxLoc(leftEye)
         cv2.circle(leftEyeColor, min_loc, 5, (0, 0, 255), 2)
+        cv2.circle(leftEyeColor, min_loc, 2, (255, 0, 0), 2)
 
         _, _, min_loc, _ = cv2.minMaxLoc(rightEye)
         cv2.circle(rightEyeColor, min_loc, 5, (0, 0, 255), 2)
+        cv2.circle(rightEyeColor, min_loc, 2, (255, 0, 0), 2)
 
     return frame
 
